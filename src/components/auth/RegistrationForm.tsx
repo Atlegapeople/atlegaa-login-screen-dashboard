@@ -73,6 +73,9 @@ export default function RegistrationForm() {
       console.error('Registration error:', err);
       // Handle specific Firebase errors
       switch (err.code) {
+        case 'auth/password-does-not-meet-requirements':
+          setError('Password must contain a non-alphanumeric character')
+          break;
         case 'auth/email-already-in-use':
           setError('An account with this email already exists');
           break;
