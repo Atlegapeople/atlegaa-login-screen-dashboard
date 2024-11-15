@@ -90,4 +90,5 @@ function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 // Named exports at the end
-export { AuthProvider, useAuth };
+// Named exports at the end
+export { AuthProvider, useAuth, AuthContext };
