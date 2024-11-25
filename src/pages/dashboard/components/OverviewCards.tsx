@@ -1,3 +1,5 @@
+import { UserProfile } from '../../../types/user';
+
 interface OverviewCardProps {
     title: string;
     value: number;
@@ -13,8 +15,12 @@ interface OverviewCardProps {
       </div>
     );
   }
+
+  interface OverviewCardsProps {
+    userProfile: UserProfile;
+  }
   
-  export default function OverviewCards() {
+  export default function OverviewCards({ userProfile }: OverviewCardsProps) {
     const overviewData = [
       { title: 'Applications', value: 12, description: 'Total Applications' },
       { title: 'Interviews', value: 3, description: 'Scheduled This Week' },
