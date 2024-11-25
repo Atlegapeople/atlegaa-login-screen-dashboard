@@ -7,48 +7,48 @@ import {
 
 export default function AboutPage() {
   // Sample data for charts
-  const growthData = [
-    { year: '2019', placements: 150 },
-    { year: '2020', placements: 280 },
-    { year: '2021', placements: 420 },
-    { year: '2022', placements: 650 },
-    { year: '2023', placements: 880 },
+  const employmentData = [
+    { year: '2019', rate: 43.1 },
+    { year: '2020', rate: 38.4 },
+    { year: '2021', rate: 39.5 },
+    { year: '2022', rate: 41.2 },
+    { year: '2023', rate: 42.8 }
   ];
 
   const industryData = [
-    { name: 'Technology', value: 35 },
-    { name: 'Finance', value: 25 },
-    { name: 'Healthcare', value: 20 },
-    { name: 'Manufacturing', value: 12 },
-    { name: 'Other', value: 8 },
+    { name: 'Agriculture', value: 10 },
+    { name: 'Manufacturing', value: 15 },
+    { name: 'Services', value: 35 },
+    { name: 'Trade & Retail', value: 20 },
+    { name: 'Other', value: 20 }
   ];
 
   const satisfactionData = [
-    { month: 'Jan', score: 92 },
-    { month: 'Feb', score: 94 },
-    { month: 'Mar', score: 93 },
-    { month: 'Apr', score: 95 },
-    { month: 'May', score: 94 },
-    { month: 'Jun', score: 96 },
+    { month: 'Jan', score: 70 },
+    { month: 'Feb', score: 72 },
+    { month: 'Mar', score: 74 },
+    { month: 'Apr', score: 75 },
+    { month: 'May', score: 77 },
+    { month: 'Jun', score: 78 },
   ];
 
   const COLORS = ['#0F5B7A', '#728C3D', '#66A5AD', '#9CB39C', '#B8D8D8'];
 
   const teamMembers = [
     {
-      name: 'Sarah Johnson',
+      name: 'Sisipho Nkosi',
       role: 'CEO & Founder',
       image: '/api/placeholder/150/150',
       bio: '15+ years in recruitment and talent acquisition'
     },
     {
-      name: 'Michael Chen',
+      name: 'Ntandoyenkosi Gumede',
       role: 'Head of Operations',
       image: '/api/placeholder/150/150',
       bio: 'Expert in scaling recruitment operations'
     },
     {
-      name: 'Lisa Patel',
+      name: 'Lungisile Mageba',
       role: 'Head of Talent',
       image: '/api/placeholder/150/150',
       bio: 'Specialist in talent assessment and development'
@@ -70,9 +70,9 @@ export default function AboutPage() {
               animate={{ x: 0 }}
               className="text-4xl font-bold mb-6"
             >
-              Transforming Careers,
+              Empowering Talent,
               <br />
-              Empowering Futures
+              Elevating Futures
             </motion.h1>
             <motion.p
               initial={{ x: -20 }}
@@ -114,10 +114,10 @@ export default function AboutPage() {
             >
               <h2 className="text-2xl font-bold text-[#0F5B7A] mb-4">Our Values</h2>
               <ul className="space-y-3 text-[#66A5AD]">
-                <li>• Excellence in everything we do</li>
-                <li>• Integrity and transparency</li>
-                <li>• Innovation and adaptability</li>
-                <li>• Diversity and inclusion</li>
+                <li>• Excellence in everything we do.</li>
+                <li>• Integrity and transparency.</li>
+                <li>• Innovation and adaptability.</li>
+                <li>• Diversity and inclusion.</li>
               </ul>
             </motion.div>
           </div>
@@ -137,7 +137,7 @@ export default function AboutPage() {
           </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Placements Growth */}
+            {/* Employment Trends */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -145,22 +145,26 @@ export default function AboutPage() {
               className="bg-white p-6 rounded-lg shadow-lg"
             >
               <h3 className="text-xl font-semibold text-[#0F5B7A] mb-4">
-                Successful Placements
+              Employment Trends Over Time
               </h3>
               <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={growthData}>
+                  <BarChart data={employmentData}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="year" />
-                    <YAxis />
-                    <Tooltip />
-                    <Bar dataKey="placements" fill="#0F5B7A" />
+                    <YAxis 
+                      domain={[35, 45]} 
+                      ticks={[35, 37, 39, 41, 43, 45]}
+                      label={{ value: 'Employment Rate (%)', angle: -90, position: 'insideLeft' }} 
+                    />
+                    <Tooltip formatter={(value) => [`${value}%`, 'Employment Rate']} />
+                    <Bar dataKey="rate" fill="#0F5B7A" />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </motion.div>
 
-            {/* Industry Distribution */}
+            {/*  Industry Employment Distribution */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -169,7 +173,7 @@ export default function AboutPage() {
               className="bg-white p-6 rounded-lg shadow-lg"
             >
               <h3 className="text-xl font-semibold text-[#0F5B7A] mb-4">
-                Industry Distribution
+              Industry Employment Distribution
               </h3>
               <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -203,15 +207,30 @@ export default function AboutPage() {
               className="bg-white p-6 rounded-lg shadow-lg"
             >
               <h3 className="text-xl font-semibold text-[#0F5B7A] mb-4">
-                Client Satisfaction Score
+                Satisfaction Score Over Months
               </h3>
               <div className="h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={satisfactionData}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="month" />
+                     <XAxis 
+                      dataKey="month"
+                      tick={{ fontSize: 12 }}
+                    />
+                    <YAxis 
+                        domain={[65, 80]}
+                        ticks={[65, 68, 71, 74, 77, 80]}
+                        label={{ 
+                          value: 'Satisfaction Score (%)', 
+                          angle: -90, 
+                          position: 'insideLeft',
+                          style: { textAnchor: 'middle' }
+                        }}
+                      />
                     <YAxis domain={[85, 100]} />
-                    <Tooltip />
+                    <Tooltip 
+                        formatter={(value) => [`${value}%`, 'Satisfaction Score']}
+                      />
                     <Line type="monotone" dataKey="score" stroke="#728C3D" strokeWidth={2} />
                   </LineChart>
                 </ResponsiveContainer>
@@ -275,9 +294,9 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="flex justify-center space-x-4"
           >
-            <button className="bg-white text-[#0F5B7A] px-8 py-3 rounded-md hover:bg-[#728C3D] hover:text-white transition-colors">
+            {/* <button className="bg-white text-[#0F5B7A] px-8 py-3 rounded-md hover:bg-[#728C3D] hover:text-white transition-colors">
               View Jobs
-            </button>
+            </button> */}
             <button className="border-2 border-white text-white px-8 py-3 rounded-md hover:bg-white hover:text-[#0F5B7A] transition-colors">
               Contact Us
             </button>
