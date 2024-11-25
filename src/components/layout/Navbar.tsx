@@ -99,7 +99,7 @@ export default function Navbar() {
     </div>
   );
 
-  function toggleDropdown(name: string): void {
+  function toggleDropdown(_name: string): void {
     throw new Error('Function not implemented.');
   }
 

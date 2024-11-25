@@ -5,7 +5,7 @@ interface CompanyProfileProps {
   userProfile: UserProfile;
 }
 
-const CompanyProfile: React.FC<CompanyProfileProps> = ({ userProfile }) => {
+const CompanyProfile: React.FC<CompanyProfileProps> = ({  }) => {
   return (
     <div>
       {/* Your component code */}

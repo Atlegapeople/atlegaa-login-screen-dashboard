@@ -187,7 +187,7 @@ export default function AboutPage() {
                       outerRadius={80}
                       label
                     >
-                      {industryData.map((entry, index) => (
+                      {industryData.map((_entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                       ))}
                     </Pie>

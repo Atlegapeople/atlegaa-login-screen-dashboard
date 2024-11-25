@@ -6,7 +6,7 @@ interface JobPostingsProps {
   userProfile: UserProfile;
 }
 
-const JobPostings: React.FC<JobPostingsProps> = ({ userProfile }) => {
+const JobPostings: React.FC<JobPostingsProps> = ({ }) => {
   return (
     <div>
       {/* Your JSX here */}

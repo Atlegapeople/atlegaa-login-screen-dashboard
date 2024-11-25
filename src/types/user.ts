@@ -1,5 +1,6 @@
 export interface UserProfile {
     id?: string;
+    bio?: string;
     email?: string | null;
     displayName: string | null;
     role: 'job_seeker' | 'employer';
@@ -7,7 +8,17 @@ export interface UserProfile {
     jobTitle?: string;
     location?: string;
     skills?: SkillData[]; // Updated skills type
-    applications?: ApplicationData[];
+    applications?: Array<{
+        id: string;
+        position: string;
+        company: string;
+        status: string;
+        date: string;
+      }>;
+      profileViews?: {
+        last30Days: number;
+        total: number;};
+        interviews?: Array<{date: string}>;
     savedJobs?: string[];
     profileCompletion?: number;
     uploadedDocuments?: UploadedDocument[]; // New field for uploaded documents

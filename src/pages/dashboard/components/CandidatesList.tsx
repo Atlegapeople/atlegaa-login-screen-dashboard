@@ -6,7 +6,7 @@ interface CandidatesListProps {
   userProfile: UserProfile;
 }
 
-const CandidatesList: React.FC<CandidatesListProps> = ({ userProfile }) => {
+const CandidatesList: React.FC<CandidatesListProps> = ({  }) => {
   return (
     <div>
       {/* Your JSX here */}
