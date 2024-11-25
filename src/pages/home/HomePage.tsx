@@ -187,20 +187,19 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Partners Section */}
-      <div className="bg-white py-16">
+  {/* Partners Section */}
+      {/* <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-[#0F5B7A] text-center mb-12">
             Trusted by Leading Companies
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-            {/* Add partner logos here */}
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i} className="h-12 bg-gray-200 rounded-md"></div>
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -226,12 +225,12 @@ const services = [
 
 const testimonials = [
   {
-    name: 'Sarah Johnson',
+    name: 'Themba Mthethwa',
     role: 'Software Developer',
     comment: 'Atlega People helped me find my dream job within weeks. The platform is intuitive and the team is incredibly supportive.'
   },
   {
-    name: 'Michael Chen',
+    name: 'Andile Ma',
     role: 'HR Manager',
     comment: 'As an employer, I\'ve found exceptional talent through Atlega People. Their screening process is thorough and efficient.'
   },
