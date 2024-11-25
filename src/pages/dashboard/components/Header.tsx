@@ -2,12 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../../config/firebase';
 import logo from '../../../assets/images/atlega-logo.png';
+import { UserProfile } from '../../../types/user';
 
 interface HeaderProps {
-  userEmail: string | null;
+  userProfile: UserProfile;
 }
 
-export default function Header({ userEmail }: HeaderProps) {
+export default function Header({ userProfile }: HeaderProps) {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -28,7 +29,7 @@ export default function Header({ userEmail }: HeaderProps) {
           </div>
           <div className="flex items-center space-x-4">
             <span className="text-[#0F5B7A] hidden md:block">
-              Welcome, {userEmail}
+              Welcome, {userProfile.displayName}
             </span>
             <button
               onClick={handleLogout}
