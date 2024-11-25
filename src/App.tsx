@@ -7,7 +7,9 @@ import ForgotPasswordForm from './components/auth/ForgotPasswordForm';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import AboutPage from './pages/about/AboutPage';
 import ContactPage from './pages/contact/ContactPage';
+import emailjs from '@emailjs/browser';
 
+emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
 function App() {
   return (
