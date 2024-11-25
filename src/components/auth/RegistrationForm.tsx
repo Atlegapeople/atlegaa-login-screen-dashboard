@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { auth, db } from '../../config/firebase';
 import logo from '../../assets/images/atlega-logo.png';
+import { doc, setDoc } from 'firebase/firestore';
 
 interface RegisterFormData {
   firstName: string;
@@ -66,6 +67,19 @@ export default function RegistrationForm() {
       await updateProfile(userCredential.user, {
         displayName: `${formData.firstName} ${formData.lastName}`
       });
+
+    // 2. Create initial Firestore profile document
+    const userDocRef = doc(db, 'users', userCredential.user.uid);
+    await setDoc(userDocRef, {
+      email: formData.email,
+      recentApplications: [],
+      scheduledInterviews: 0,
+      profileViews: 0,
+      role: 'job_seeker',
+      skills: [],
+      uploadedDocuments: [],
+      createdAt: new Date().toISOString(),
+    });
 
       // Navigate to dashboard after successful registration
       navigate('/dashboard');
