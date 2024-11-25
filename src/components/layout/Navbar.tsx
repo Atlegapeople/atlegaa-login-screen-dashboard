@@ -26,24 +26,24 @@ export default function Navbar() {
   }, []);
 
   const menuItems: MenuItem[] = [
-    {
-      name: 'Find Jobs',
-      href: '/jobs',
-      submenu: [
-        { name: 'Browse All Jobs', href: '/jobs/browse' },
-        { name: 'Job Categories', href: '/jobs/categories' },
-        { name: 'Companies', href: '/jobs/companies' },
-      ]
-    },
-    {
-      name: 'For Employers',
-      href: '/employers',
-      submenu: [
-        { name: 'Post a Job', href: '/employers/post-job' },
-        { name: 'Recruitment Solutions', href: '/employers/solutions' },
-        { name: 'Pricing', href: '/employers/pricing' },
-      ]
-    },
+    // {
+    //   name: 'Find Jobs',
+    //   href: '/jobs',
+    //   submenu: [
+    //     { name: 'Browse All Jobs', href: '/jobs/browse' },
+    //     { name: 'Job Categories', href: '/jobs/categories' },
+    //     { name: 'Companies', href: '/jobs/companies' },
+    //   ]
+    // },
+    // {
+    //   name: 'For Employers',
+    //   href: '/employers',
+    //   submenu: [
+    //     { name: 'Post a Job', href: '/employers/post-job' },
+    //     { name: 'Recruitment Solutions', href: '/employers/solutions' },
+    //     { name: 'Pricing', href: '/employers/pricing' },
+    //   ]
+    // },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
@@ -99,6 +99,10 @@ export default function Navbar() {
     </div>
   );
 
+  function toggleDropdown(name: string): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <nav className="bg-white shadow-md relative z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -106,7 +110,7 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <img
-              className="h-8 w-auto cursor-pointer"
+              className="h-10 w-auto cursor-pointer"
               src={logo}
               alt="Atlega People"
               onClick={() => navigate('/')}
@@ -168,20 +172,22 @@ export default function Navbar() {
             {currentUser ? (
               <UserProfileSection />
             ) : (
-              <div className="flex items-center space-x-4">
-                <button
-                  onClick={() => navigate('/login')}
-                  className="px-4 py-2 text-[#0F5B7A] hover:text-[#728C3D] transition-colors"
-                >
-                  Sign in
-                </button>
-                <button
-                  onClick={() => navigate('/register')}
-                  className="px-4 py-2 bg-[#0F5B7A] text-white rounded-md hover:bg-[#728C3D] transition-colors"
-                >
-                  Register
-                </button>
-              </div>
+              // {/* Sign in and Register buttons */}
+              // <div className="flex items-center space-x-4">
+              //   <button
+              //     onClick={() => navigate('/login')}
+              //     className="px-4 py-2 text-[#0F5B7A] hover:text-[#728C3D] transition-colors"
+              //   >
+              //     Sign in
+              //   </button>
+              //   <button
+              //     onClick={() => navigate('/register')}
+              //     className="px-4 py-2 bg-[#0F5B7A] text-white rounded-md hover:bg-[#728C3D] transition-colors"
+              //   >
+              //     Register
+              //   </button>
+              // </div>
+              null
             )}
           </div>
 
