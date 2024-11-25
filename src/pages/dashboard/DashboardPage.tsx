@@ -22,7 +22,7 @@ export default function DashboardPage() {
       const userDoc = await getDoc(userDocRef);
 
       if (userDoc.exists()) {
-        setUserProfile({ id: userDoc.id, ...userDoc.data() } as UserProfile);
+        setUserProfile({ id: userDoc.id, ...userDoc.data() } as unknown as UserProfile);
       }
     } catch (err) {
       console.error('Error fetching user profile:', err);
