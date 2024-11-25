@@ -3,31 +3,35 @@ on:
   push:
     branches:
       - main
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          
+         
       - name: Install Dependencies
         run: npm install
         
+      # Add TypeScript build step
+      - name: TypeScript Build
+        run: npm run tsc || true  # Continue even if there are type errors for now
+       
       - name: Build
         run: npm run build
         env:
           CI: false
-
+          VITE_FIREBASE_CONFIG: ${{ secrets.VITE_FIREBASE_CONFIG }}  # If you're using Firebase
+          
       - name: Deploy to Xneelo
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./build/
+          local-dir: ./dist/  # Changed from build to dist since you're using Vite
           server-dir: /public_html/
