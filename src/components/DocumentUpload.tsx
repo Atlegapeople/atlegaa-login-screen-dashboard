@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
-import { UploadedDocument } from '../../types/user'; // Import the type for the document
-import { db, storage } from '@/config/firebase';
+import { UploadedDocument } from '../types/user'; // Import the type for the document
+import { db, storage } from '../config/firebase';
 
 interface DocumentUploadProps {
   userId: string;

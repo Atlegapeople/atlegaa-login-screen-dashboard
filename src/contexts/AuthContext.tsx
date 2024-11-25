@@ -1,9 +1,10 @@
-import { createContext, useContext, ReactNode, useState } from 'react';
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
+import { createContext, useContext, ReactNode, useState, useEffect } from 'react'; // Add useEffect
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  onAuthStateChanged // Add this import
 } from 'firebase/auth';
 import { auth } from '../config/firebase';
 
@@ -14,6 +15,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  isLoading: boolean; // Add this
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
@@ -22,7 +24,6 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Separate hook declaration
 function useAuth() {
   const context = useContext(AuthContext);
   if (context === undefined) {
@@ -31,9 +32,26 @@ function useAuth() {
   return context;
 }
 
-// Component declaration
 function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+
+  // Add useEffect to listen to auth state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser({
+          email: firebaseUser.email,
+          uid: firebaseUser.uid
+        });
+      } else {
+        setUser(null);
+      }
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const login = async (email: string, password: string) => {
     try {
@@ -77,18 +95,17 @@ function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ 
-      user, 
-      login, 
-      logout, 
-      register, 
-      resetPassword 
+    <AuthContext.Provider value={{
+      user,
+      isLoading, // Add this to the provider value
+      login,
+      logout,
+      register,
+      resetPassword,
     }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-// Named exports at the end
-// Named exports at the end
 export { AuthProvider, useAuth, AuthContext };

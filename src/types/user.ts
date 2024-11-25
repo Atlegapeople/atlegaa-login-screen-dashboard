@@ -1,6 +1,6 @@
 export interface UserProfile {
-    uid: string;
-    email: string | null;
+    id?: string;
+    email?: string | null;
     displayName: string | null;
     role: 'job_seeker' | 'employer';
     industry?: string;
